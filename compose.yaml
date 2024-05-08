@@ -1,0 +1,18 @@
+services:
+  golang:
+    image: golang
+    volumes:
+      - .:/srv
+    working_dir: /srv
+    expose:
+      - 8000
+  db:
+    image: mariadb:11
+    container_name: pokerogue-db-local
+    environment:
+      MYSQL_DATABASE: pokeroguedb
+      MYSQL_USER: pokerogue
+      MYSQL_PASSWORD: pokerogue
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    volumes:
+      - ./.data/db:/var/lib/mysql
